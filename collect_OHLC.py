@@ -13,7 +13,7 @@ def fetch_data(start, stop, symbol, interval, tick_limit, step):
     data = []
     res = api_v2.candles(symbol=symbol, interval=interval,
                          limit=tick_limit, start=start,
-                         end=end)
+                         end=stop)
 
     time.sleep(1)
     res.reverse()
@@ -27,11 +27,11 @@ selected_crypto_symbol = pd.read_csv("selected_crypto.csv").symbol.values
 time_step = 60000 * 60 * 24 * 9
 
 # Define the start date 
-t_start = datetime.datetime(2020, 4, 1, 0, 0)
+t_start = datetime.datetime(2019, 5, 15, 0, 0)
 t_start = time.mktime(t_start.timetuple()) * 1000
 
 # Define the end date
-t_stop = datetime.datetime(2020, 4, 10, 0, 0)
+t_stop = datetime.datetime(2019, 6, 13, 0, 0)
 t_stop = time.mktime(t_stop.timetuple()) * 1000
 
 # Define query parameters
@@ -47,16 +47,11 @@ for crypto in selected_crypto_symbol:
                            interval=bin_size, tick_limit=limit, 
                            step=time_step)
 
-    if len(pair_data) >= biggest:
-        biggest = len(pair_data)
-    else:
-        pair_data =  
-
     print(index / len(selected_crypto_symbol))
     index += 1
 
     if len(pair_data) == 0:
         continue
 
-    with open("bigdata_hour_3/" + pair + "_data.pkl", "wb") as f: 
+    with open("test_pump_eos/" + pair + "_data.pkl", "wb") as f: 
         pickle.dump(pair_data, f, protocol=pickle.HIGHEST_PROTOCOL)

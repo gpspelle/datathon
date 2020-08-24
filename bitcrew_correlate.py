@@ -30,7 +30,7 @@ def correct_timestamp(time_btc, time_coin, val_coin):
     return time_coin, val_coin
  
 
-crypto_list = [i[:3] for i in os.listdir("bigdata_hour_2") if i[-4:] == ".pkl"]
+crypto_list = [i[:3] for i in os.listdir("test_pump_eos") if i[-4:] == ".pkl"]
 
 print("[.] Crypto list:", crypto_list)
 print("[.] Crypto list len:", len(crypto_list))
@@ -38,19 +38,19 @@ print("[.] Crypto list len:", len(crypto_list))
 crypto_data = {}
 crypto_timestamp = {}
 
-with open("bigdata_hour_3/btcusd_data.pkl", "rb") as f:
+with open("test_pump_eos/btcusd_data.pkl", "rb") as f:
     x = pickle.load(f)
     timestamp_btc = [row[0] for row in x]
 
 timestamp_range = len(timestamp_btc)
 
 for cryptocurrency in crypto_list:
-    print("bigdata_hour_3/" + cryptocurrency + "usd_data.pkl")
-    with open("bigdata_hour_3/" + cryptocurrency + "usd_data.pkl", "rb") as f:
+    print("test_pump_eos/" + cryptocurrency + "usd_data.pkl")
+    with open("test_pump_eos/" + cryptocurrency + "usd_data.pkl", "rb") as f:
         x = pickle.load(f)
 
     timestamp = [row[0] for row in x]
-    data = [row[1] for row in x]
+    data = [row[3] for row in x]
 
     crypto_timestamp_range = len(timestamp) 
 
