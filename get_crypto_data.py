@@ -34,7 +34,7 @@ try:
 
     cryptocurrency.sort(key=lambda x: x[1], reverse=True)
 
-    cryptocurrency = cryptocurrency[:50]
+    cryptocurrency = cryptocurrency[:200]
     df = pd.DataFrame(data=cryptocurrency, columns=["symbol", "market_cap"])
 
     df.to_csv("selected_crypto.csv", index=False)

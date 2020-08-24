@@ -2,12 +2,12 @@ import pandas as pd
 import seaborn as sns
 import os
 from matplotlib import pyplot as plt
+import pickle
 
-selected_crypto_symbol = pd.read_csv("selected_crypto.csv").symbol.values
+with open("crypto_data.pkl", "rb") as f:
+    crypto_data = pickle.load(f) 
 
-crypto_list = [i[:-4] for i in os.listdir("cryptocurrency_data") if "usd.csv" in i and (i[:3] in selected_crypto_symbol or i[:4] in selected_crypto_symbol)]
-
-
+crypto_list = list(crypto_data.keys())
 correlate = pd.read_csv("correlation_data.csv")
 shift = pd.read_csv("correlation_shift.csv")
 
